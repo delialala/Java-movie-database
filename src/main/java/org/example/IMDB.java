@@ -10,16 +10,16 @@ import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 public class IMDB {
-    List<User> useri;
-    List <Actor> actori;
-    List <Request> cereri;
-    List <Production> productii;
+    List<User> users;
+    List <Actor> actors;
+    List <Request> requests;
+    List <Production> productions;
     private static IMDB imdb = null;
     private IMDB(){
-        useri = new ArrayList<>();
-        actori = new ArrayList<>();
-        cereri = new ArrayList<>();
-        productii = new ArrayList<>();
+        users = new ArrayList<>();
+        actors = new ArrayList<>();
+        requests = new ArrayList<>();
+        productions = new ArrayList<>();
     }
 
     public static IMDB getInstance(){
@@ -37,9 +37,7 @@ public class IMDB {
     }
 
     public void run(){
-
-    }
-    public static void main(String[] args){
+        //reading actors json
         try{
             ObjectMapper mapper = new ObjectMapper();
             Actor[] actori = mapper.readValue(Paths.get("src\\main\\resources\\input\\actors.json").toFile(), Actor[].class);
@@ -51,7 +49,10 @@ public class IMDB {
                     System.out.println(l.getType() + ":" + l.getTitle());
             }
         } catch (Exception ex) {
-        ex.printStackTrace();
+            ex.printStackTrace();
+        }
     }
+    public static void main(String[] args){
+        IMDB.getInstance().run();
     }
 }

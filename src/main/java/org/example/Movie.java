@@ -1,10 +1,10 @@
 package org.example;
 
 public class Movie extends Production{
-    int durata;
-    int anLansare;
+    int duration;
+    int releaseYear;
     @Override
     public void displayInfo() {
-        System.out.println("film: " + durata + " " + anLansare);
+        System.out.println("film: " + this.title + " " + duration + " " + releaseYear);
     }
 }

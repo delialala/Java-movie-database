@@ -1,7 +1,7 @@
 package org.example;
 
 public class Regular extends User implements RequestsManager{
-    void adaugaRecenzie(){
+    void addRating(){
         //ne dam cu parerea
     }
 

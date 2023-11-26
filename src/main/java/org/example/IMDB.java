@@ -2,18 +2,15 @@ package org.example;
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.io.File;
-import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 public class IMDB {
-    List<User> users;
-    List <Actor> actors;
-    List <Request> requests;
-    List <Production> productions;
+    public Collection<User<?>> users;
+    public Collection <Actor> actors;
+    public Collection <Request> requests;
+    public Collection <Production> productions;
     private static IMDB imdb = null;
     private IMDB(){
         users = new ArrayList<>();

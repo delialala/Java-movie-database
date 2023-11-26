@@ -6,7 +6,7 @@ import java.util.List;
 
 public abstract class Production implements Comparable<Production>{
 
-    String title;
+    public String title;
     List<String> directors;
     List<String> actors;
     List<String> genres;

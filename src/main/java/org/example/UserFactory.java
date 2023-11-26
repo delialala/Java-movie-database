@@ -2,13 +2,13 @@ package org.example;
 
 public class UserFactory {
     public static User factory (AccountType type){
-        if(type == AccountType.REGULAR){
+        if(type == AccountType.Regular){
             return new Regular();
         }
-        if(type == AccountType.CONTRIBUTOR){
+        if(type == AccountType.Contributor){
             return new Regular();
         }
-        if(type == AccountType.ADMIN){
+        if(type == AccountType.Admin){
             return new Regular();
         }
         return null;

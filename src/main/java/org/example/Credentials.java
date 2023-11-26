@@ -2,14 +2,14 @@ package org.example;
 
 public class Credentials {
     String email;
-    String parola;
+    String password;
 
     public String getEmail() {
         return email;
     }
 
-    public String getParola() {
-        return parola;
+    public String getPassword() {
+        return password;
     }
 
     public void setEmail(String email) {
@@ -17,6 +17,6 @@ public class Credentials {
     }
 
     public void setParola(String parola) {
-        this.parola = parola;
+        this.password = parola;
     }
 }

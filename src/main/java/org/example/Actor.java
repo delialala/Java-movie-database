@@ -1,36 +1,43 @@
 package org.example;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.*;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Actor {
-    String nume;
-    enum Type{
+    String name;
+
+    public enum Type{
+        @JsonProperty
         Movie, Sitcom
     }
-    HashMap<String, Type> filmeJucate;
-    String biografie;
+    List<Pair<String, Type>> performances;
+    String biography;
 
-    public String getNume() {
-        return nume;
+    public String getname() {
+        return name;
     }
 
-    public HashMap<String, Type> getFilmeJucate() {
-        return filmeJucate;
+
+
+    public String getbiography() {
+        return biography;
     }
 
-    public String getBiografie() {
-        return biografie;
+    public void setname(String name) {
+        this.name = name;
     }
 
-    public void setNume(String nume) {
-        this.nume = nume;
+    public List<Pair<String, Type>> getPerformances() {
+        return performances;
     }
 
-    public void setFilmeJucate(HashMap<String, Type> filmeJucate) {
-        this.filmeJucate = filmeJucate;
+    public void setPerformances(String title, Type type) {
+        this.performances.add(new Pair<>(title, type));
     }
 
-    public void setBiografie(String biografie) {
-        this.biografie = biografie;
+    public void setbiography(String biography) {
+        this.biography = biography;
     }
 }

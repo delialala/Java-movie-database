@@ -6,17 +6,17 @@ import java.util.List;
 
 public abstract class Production implements Comparable<Production>{
 
-    String titlu;
-    List<String> regizori;
-    List<String> actori;
-    List<String> genre;
-    List<Rating> evaluari;
-    String descriere;
-    Double nota;
-    //comparare in functie de titlu
+    public String title;
+    List<String> directors;
+    List<String> actors;
+    List<String> genres;
+    List<Rating> ratings;
+    String plot;
+    Double averageRating;
+    //comparare in functie de title
     @Override
     public int compareTo(@NotNull Production production) {
-        return this.titlu.compareTo(production.titlu);
+        return this.title.compareTo(production.title);
     }
     public abstract void displayInfo();
 

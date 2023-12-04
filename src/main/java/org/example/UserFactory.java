@@ -1,7 +1,7 @@
 package org.example;
 
 public class UserFactory {
-    public static User factory (AccountType type){
+    public static User<?> factory (AccountType type){
         if(type == AccountType.Regular){
             return new Regular();
         }

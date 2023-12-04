@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.SortedSet;
 
-public abstract class User<T> implements Comparable<User<T>> {
+public abstract class User<T> implements Comparable<User<T>>, Observer<T> {
 
     class Information{
         private Credentials credentials;
@@ -55,22 +55,29 @@ public abstract class User<T> implements Comparable<User<T>> {
                 return this;
             }
         }
-
     }
     AccountType userType;
     String username;
     int experience;
     List<String> notifications;
-    SortedSet<T> favoriteProductions;
+    public SortedSet<T> favorites;
     public void stergeFavorit(T deSters){
-        favoriteProductions.remove(deSters);
+        favorites.remove(deSters);
     }
     public void adaugaFavorit(T deAdaugat){
-        favoriteProductions.add(deAdaugat);
+        favorites.add(deAdaugat);
     }
     public void addExperience(){
         experience++;
     }
+
+    @Override
+    public void update(String message) {
+        System.out.println("new rating");
+    }
+
+
+
     @Override
     public int compareTo(@NotNull User user) {
         return 0;

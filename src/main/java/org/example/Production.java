@@ -9,7 +9,7 @@ public abstract class Production implements Comparable<Production>{
     public String title;
     List<String> directors;
     List<String> actors;
-    List<String> genres;
+    List<Genre> genres;
     List<Rating> ratings;
     String plot;
     Double averageRating;

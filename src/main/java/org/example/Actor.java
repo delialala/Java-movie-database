@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Actor {
-    String name;
+    public String name;
 
     public enum Type{
         @JsonProperty

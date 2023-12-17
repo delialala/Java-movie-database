@@ -1,6 +1,10 @@
 package org.example;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Episode {
-    String nume;
-    int durata;
+    @JsonProperty("episodeName")
+    String episodeName;
+    @JsonProperty("duration")
+    String duration;
 }

@@ -1,13 +1,18 @@
 package org.example;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Rating implements Subject{
+    @JsonProperty("username")
     String username;
-    int nota;
-    String comentarii;
+    @JsonProperty("rating")
+    int rating;
+    @JsonProperty("comment")
+    String comment;
     List<Observer<?>> users;
 
     public Rating() {
@@ -31,6 +36,6 @@ public class Rating implements Subject{
     }
     @Override
     public String getUpdate() {
-        return "new rating of " + nota;
+        return "new rating of " + rating;
     }
 }

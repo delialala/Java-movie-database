@@ -1,6 +1,6 @@
 package org.example;
 
-public class Regular extends User implements RequestsManager{
+public class Regular<T> extends User<T> implements RequestsManager{
     void addRating(){
         //ne dam cu parerea
     }

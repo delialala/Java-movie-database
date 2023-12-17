@@ -1,7 +1,11 @@
 package org.example;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Credentials {
+    @JsonProperty("email")
     String email;
+    @JsonProperty("password")
     String password;
 
     public String getEmail() {

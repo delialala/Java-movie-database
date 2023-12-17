@@ -1,25 +1,31 @@
 package org.example;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Actor {
+public class Actor implements Comparable{
     public String name;
 
-    public enum Type{
-        @JsonProperty
-        Movie, Sitcom
+    @Override
+    public int compareTo(@NotNull Object o) {
+        return 0;
     }
+
+    public enum Type{
+        Movie, Sitcom, Series
+    }
+    @JsonProperty("performances")
     List<Pair<String, Type>> performances;
+    @JsonProperty("biography")
     String biography;
 
     public String getname() {
         return name;
     }
-
-
 
     public String getbiography() {
         return biography;

@@ -6,17 +6,52 @@ import java.util.*;
 import java.io.File;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-public class IMDB {
-    public Collection<User<?>> users;
-    public Collection <Actor> actors;
-    public Collection <Request> requests;
-    public Collection <Production> productions;
+public class IMDB{
+    private List<User<?>> users;
+    private List <Actor> actors;
+    private List <Request> requests;
+    private List <Production> productions;
     private static IMDB imdb = null;
+
+    public Collection<User<?>> getUsers() {
+        return users;
+    }
+
+
+    public Collection<Request> getRequests() {
+        return requests;
+    }
+
+    public List<Production> getProductions() {
+        return productions;
+    }
+
+    public void setUsers(List<User<?>> users) {
+        this.users = users;
+    }
+
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
+    }
+
+    public void setActors(List<Actor> actors) {
+        this.actors = actors;
+    }
+
+    public List<Actor> getActors() {
+        return actors;
+    }
+
+    public void setProductions(List<Production> productions) {
+        this.productions = productions;
+    }
+
     private IMDB(){
         users = new ArrayList<>();
-        actors = new ArrayList<>();
         requests = new ArrayList<>();
         productions = new ArrayList<>();
+        actors = new ArrayList<>();
     }
 
     public static IMDB getInstance(){
@@ -25,31 +60,34 @@ public class IMDB {
         return imdb;
     }
 
-    public void parseJSON() throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        Map<?, ?> map = mapper.readValue("src/main/resourcecs/input/actors.json", Map.class);
-        for (Map.Entry<?, ?> entry : map.entrySet()) {
-            System.out.println(entry.getKey() + "=" + entry.getValue());
+
+    public void readJson(){
+        try{
+            ObjectMapper mapper = new ObjectMapper();
+            Actor[] actori = mapper.readValue(Paths.get("src\\main\\resources\\input\\actors.json").toFile(), Actor[].class);
+            actors = Arrays.asList(actori);
+
+            Production[] productionsArray = mapper.readValue(Paths.get("src\\main\\resources\\input\\production.json").toFile(), Production[].class);
+            productions = Arrays.asList(productionsArray);
+
+            Request[] requestsArray = mapper.readValue(Paths.get("src\\main\\resources\\input\\requests.json").toFile(), Request[].class);
+            requests = Arrays.asList(requestsArray);
+
+            User<?>[] userArray = mapper.readValue(Paths.get("src\\main\\resources\\input\\accounts.json").toFile(), User[].class);
+            users = Arrays.asList(userArray);
+
+        } catch (Exception ex) {
+            System.out.println("oopsie, eroare la citire json");
         }
     }
 
     public void run(){
-        //reading actors json
-        try{
-            ObjectMapper mapper = new ObjectMapper();
-            Actor[] actori = mapper.readValue(Paths.get("src\\main\\resources\\input\\actors.json").toFile(), Actor[].class);
+        readJson();
 
-            List<Actor> actorList = Arrays.asList(actori);
-            for (Actor i : actorList) {
-                System.out.println(i.name);
-                for(Pair l : i.performances)
-                    System.out.println(l.getType() + ":" + l.getTitle());
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
     public static void main(String[] args){
+        System.out.println("yahoo");
+        System.out.println("yahoo");
         IMDB.getInstance().run();
     }
 }

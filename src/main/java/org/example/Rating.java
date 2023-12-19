@@ -13,24 +13,24 @@ public class Rating implements Subject{
     int rating;
     @JsonProperty("comment")
     String comment;
-    List<Observer<?>> users;
+    List<Observer> users;
 
     public Rating() {
         this.users = new ArrayList<>();
     }
 
     @Override
-    public void addObserver(Observer<?> user) {
+    public void addObserver(Observer user) {
         users.add(user);
     }
 
     @Override
-    public void removeObserver(Observer<?> user) {
+    public void removeObserver(Observer user) {
         users.remove(user);
     }
     @Override
     public void notifyUsers() {
-        for(Observer<?> user : users){
+        for(Observer user : users){
             user.update(getUpdate());
         }
     }

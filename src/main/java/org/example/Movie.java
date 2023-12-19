@@ -17,6 +17,7 @@ public class Movie extends Production{
 
     @Override
     public int compareTo(@NotNull Object o) {
-        return 0;
+        Movie m = (Movie) o;
+        return this.title.compareTo(m.title);
     }
 }

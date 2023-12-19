@@ -139,7 +139,7 @@
     "favoriteActors": [
       "Leonardo DiCaprio",
       "Johnny Depp",
-      "Cate"
+      "Cate Blanchett"
     ]
   },
   {
@@ -435,7 +435,7 @@
         "email": "bossuAlMare@ymail.com",
         "password": "test"
       },
-      "nume": "Nicusor de la Braila",
+      "name": "Nicusor de la Braila",
       "country": "RO",
       "age": 42,
       "gender": "Male",
@@ -453,13 +453,13 @@
   },
   {
     "username": "testRegular",
-    "experience": 100,
+    "experience": "100",
     "information": {
       "credentials": {
         "email": "reg@ular.ro",
         "password": "test"
       },
-      "nume": "Regular",
+      "name": "Regular",
       "country": "RO",
       "age": 22,
       "gender": "Male",
@@ -481,13 +481,13 @@
   },
   {
     "username": "testContributor",
-    "experience": 100,
+    "experience": "100",
     "information": {
       "credentials": {
         "email": "cont@tributor.ro",
         "password": "test"
       },
-      "nume": "Contributor",
+      "name": "Contributor",
       "country": "RO",
       "age": 24,
       "gender": "Female",

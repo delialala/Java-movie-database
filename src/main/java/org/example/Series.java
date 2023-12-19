@@ -24,6 +24,6 @@ public class Series extends Production{
 
     @Override
     public int compareTo(@NotNull Object o) {
-        return 0;
+        return this.title.compareTo(((Series) o).title);
     }
 }

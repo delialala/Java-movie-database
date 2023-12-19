@@ -20,7 +20,7 @@ import java.util.SortedSet;
         @JsonSubTypes.Type(value = Admin.class, name = "Admin"),
         @JsonSubTypes.Type(value = Regular.class, name = "Regular")
 })
-public abstract class User<T> implements Comparable<User<T>>, Observer<T> {
+public abstract class User<T> implements Comparable<User<T>>, Observer {
     @JsonDeserialize(builder = Information.InformationBuilder.class)
     static class Information{
         @JsonProperty("credentials")
@@ -135,6 +135,6 @@ public abstract class User<T> implements Comparable<User<T>>, Observer<T> {
 
     @Override
     public int compareTo(@NotNull User user) {
-        return 0;
+        return this.username.compareTo(user.username);
     }
 }

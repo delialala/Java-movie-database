@@ -21,7 +21,7 @@ public class Request implements Subject {
     String usernameProblem;
     @JsonProperty("to")
     String usernameResolved;
-    List<Observer<?>> users;
+    List<Observer> users;
     @JsonSetter("actorName")
     public void setActorName(String actorName){
         title = actorName;
@@ -31,18 +31,18 @@ public class Request implements Subject {
         title = movieTitle;
     }
     @Override
-    public void addObserver(Observer<?> user) {
+    public void addObserver(Observer user) {
             users.add(user);
     }
 
     @Override
-    public void removeObserver(Observer<?> user) {
+    public void removeObserver(Observer user) {
         users.remove(user);
     }
 
     @Override
     public void notifyUsers() {
-        for(Observer<?> user : users){
+        for(Observer user : users){
             user.update(getUpdate());
         }
     }
@@ -50,6 +50,9 @@ public class Request implements Subject {
     @Override
     public String getUpdate() {
         return title + " " + description;
+    }
+    public int compareTo(Request req){
+        return this.description.compareTo(req.description);
     }
 
 }

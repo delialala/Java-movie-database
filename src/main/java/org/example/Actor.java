@@ -12,7 +12,7 @@ public class Actor implements Comparable{
 
     @Override
     public int compareTo(@NotNull Object o) {
-        return 0;
+        return this.name.compareTo(((Actor) o).name);
     }
 
     public enum Type{

@@ -12,12 +12,24 @@ public class Movie extends Production{
     int releaseYear;
     @Override
     public void displayInfo() {
-        System.out.println("film: " + this.title + " " + duration + " " + releaseYear);
+        System.out.println(
+                "Movie name: " + title + "\n"
+                        + "Release year: " + releaseYear + "\n"
+                        + "Duration: " + duration);
+        super.displayGeneralInfo();
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
     }
 
     @Override
-    public int compareTo(@NotNull Object o) {
-        Movie m = (Movie) o;
-        return this.title.compareTo(m.title);
+    public boolean isMovieOrSeries() {
+        return true;
     }
+
 }

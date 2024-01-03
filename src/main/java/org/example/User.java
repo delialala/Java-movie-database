@@ -6,11 +6,13 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import org.example.ApplicationStates.Application;
 import org.jetbrains.annotations.NotNull;
 
 
-import java.util.List;
-import java.util.SortedSet;
+import java.text.DateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
@@ -22,7 +24,7 @@ import java.util.SortedSet;
 })
 public abstract class User<T> implements Comparable<User<T>>, Observer {
     @JsonDeserialize(builder = Information.InformationBuilder.class)
-    static class Information{
+    public static class Information{
         @JsonProperty("credentials")
         private Credentials credentials;
         @JsonProperty("name")
@@ -34,7 +36,15 @@ public abstract class User<T> implements Comparable<User<T>>, Observer {
         @JsonProperty("gender")
         private String gender;
         @JsonProperty("birthDate")
-        private String birthDate;
+        private Date birthDate;
+
+        public String getName() {
+            return name;
+        }
+
+        public Credentials getCredentials() {
+            return credentials;
+        }
 
         public Information(InformationBuilder builder) {
             this.credentials = builder.credentials;
@@ -45,12 +55,12 @@ public abstract class User<T> implements Comparable<User<T>>, Observer {
             this.gender = builder.gender;
             }
         @JsonPOJOBuilder(buildMethodName = "build", withPrefix = "")
-        static class InformationBuilder {
+        public static class InformationBuilder {
             private Credentials credentials;
             private String name;
             private String country;
             private int age;
-            private String birthDate;
+            private Date birthDate;
             private String gender;
 
             public InformationBuilder credentials(Credentials credentials) {
@@ -73,7 +83,7 @@ public abstract class User<T> implements Comparable<User<T>>, Observer {
                 return this;
             }
 
-            public InformationBuilder birthDate(String birthDate) {
+            public InformationBuilder birthDate(Date birthDate) {
                 this.birthDate = birthDate;
                 return this;
             }
@@ -95,9 +105,9 @@ public abstract class User<T> implements Comparable<User<T>>, Observer {
     @JsonProperty("experience")
     int experience;
     @JsonProperty("notifications")
-    List<String> notifications;
+    List<String> notifications = new ArrayList<>();
     @JsonProperty("favorite")
-    SortedSet<T> favorites;
+    SortedSet<T> favorites = new TreeSet<>(new ComparatorHelper<>());
 
     public SortedSet<T> getFavorites() {
         return favorites;
@@ -107,31 +117,143 @@ public abstract class User<T> implements Comparable<User<T>>, Observer {
         this.favorites = favorites;
     }
 
-    public void removeFavorite(T e){
-        favorites.remove(e);
+    public void removeFavoriteActor(Actor e){
+        favorites.remove((T)e);
     }
-    public void addFavorite(T e){
-        favorites.add(e);
+    public void removeFavoriteProduction(Production e){
+        favorites.remove((T)e);
     }
+
+    public void setInformation(Information information) {
+        this.information = information;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
+    public void setUserType(AccountType userType) {
+        this.userType = userType;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public boolean addFavorite(String nameToBeAdded){
+        // search if the actor or production exists
+        for(Actor actor : IMDB.getInstance().getActors()){
+            if(nameToBeAdded.equals(actor.getname()))
+            {
+                favorites.add((T) actor);
+                return true;
+            }
+        }
+            for(Production production : IMDB.getInstance().getProductions()){
+                if(nameToBeAdded.equals(production.title))
+                {
+                    favorites.add((T)production);
+                    production.addObserver(this);
+                    return true;
+                }
+            }
+        return false;
+    }
+    public boolean removeFavorite(String nameToBeAdded){
+        // search if the actor or production exists
+        for(Actor actor : IMDB.getInstance().getActors()){
+            if(nameToBeAdded.equals(actor.getname()))
+            {
+                favorites.remove((T) actor);
+                return true;
+            }
+        }
+        for(Production production : IMDB.getInstance().getProductions()){
+            if(nameToBeAdded.equals(production.title))
+            {
+                favorites.remove((T)production);
+                production.removeObserver(this);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void addExperience(){
         experience++;
     }
 
     @JsonSetter("favoriteActors")
-    public void setFavoriteActors(SortedSet<T> favorites) {
-        this.favorites = favorites;
+    public void setFavoriteActors(ArrayList<String> favoriteActors) {
+        for(String actorName : favoriteActors){
+            //look in the actors list for the name
+            for(Actor actor : IMDB.getInstance().getActors()){
+                if(actorName.equals(actor.name))
+                    favorites.add((T) actor);
+            }
+        }
     }
     @JsonSetter("favoriteProductions")
-    public void setFavoriteProductions(SortedSet<T> favorites) {
-        this.favorites = favorites;
+    public void setFavoriteProductions(ArrayList<String> favoriteProductions) {
+        for(String productionName : favoriteProductions){
+            //look in the productions list for the name
+            for(Production production : IMDB.getInstance().getProductions()){
+                if(productionName.equals(production.title))
+                {
+                    favorites.add((T) production);
+                    production.addObserver(this);
+                }
+            }
+        }
     }
 
+    public void displayInfo(){
+        System.out.println("Username: " + username + "\n"
+                + "mail: " + information.credentials.getEmail() + "\n"
+                + "password: " + information.credentials.getPassword() + "\n"
+                + "age: " + information.age + "\n"
+                + "birthdate: " + information.birthDate + "\n"
+                + "country: " + information.country + "\n");
+    }
     @Override
     public void update(String message) {
-        System.out.println("new rating");
+        notifications.add(message);
     }
 
+    public Information getInformation() {
+        return information;
+    }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public int getExperience() {
+        return experience;
+    }
+
+    public List<String> getNotifications() {
+        return notifications;
+    }
+    public void showFavorites(){
+        for(T entry : favorites){
+            if(entry instanceof Actor)
+                System.out.println(((Actor) entry).name);
+            if(entry instanceof Production)
+                System.out.println(((Production) entry).title);
+        }
+    }
+    public boolean existsInFavorites(String name){
+        for(T entry : favorites){
+            if(entry instanceof Actor)
+                if(name.equals(((Actor) entry).name))
+                    return true;
+            if(entry instanceof Production)
+                if(name.equals(((Production) entry).title))
+                    return true;
+        }
+        return false;
+    }
 
     @Override
     public int compareTo(@NotNull User user) {

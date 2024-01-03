@@ -6,36 +6,39 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Rating implements Subject{
+public class Rating{
     @JsonProperty("username")
     String username;
     @JsonProperty("rating")
     int rating;
     @JsonProperty("comment")
     String comment;
-    List<Observer> users;
 
-    public Rating() {
-        this.users = new ArrayList<>();
-    }
 
-    @Override
-    public void addObserver(Observer user) {
-        users.add(user);
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    @Override
-    public void removeObserver(Observer user) {
-        users.remove(user);
+    public void setRating(int rating) {
+        this.rating = rating;
     }
-    @Override
-    public void notifyUsers() {
-        for(Observer user : users){
-            user.update(getUpdate());
-        }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
+
+
+
+    public String getUsername() {
+        return username;
+    }
+
+
+
     @Override
-    public String getUpdate() {
-        return "new rating of " + rating;
+    public String toString() {
+        return "Rating by: " + username + "\n"
+                + "Score given: " + rating + "\n"
+                + "Comment: " + comment + "\n" + "\n";
     }
 }

@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Actor implements Comparable{
     public String name;
@@ -19,16 +17,16 @@ public class Actor implements Comparable{
         Movie, Sitcom, Series
     }
     @JsonProperty("performances")
-    List<Pair<String, Type>> performances;
+    List<Pair<String, Type>> performances = new ArrayList<>();
     @JsonProperty("biography")
     String biography;
 
-    public String getname() {
-        return name;
+    public void setPerformances(List<Pair<String, Type>> performances) {
+        this.performances = performances;
     }
 
-    public String getbiography() {
-        return biography;
+    public String getname() {
+        return name;
     }
 
     public void setname(String name) {
@@ -39,11 +37,20 @@ public class Actor implements Comparable{
         return performances;
     }
 
-    public void setPerformances(String title, Type type) {
+    public void addPerformance(String title, Type type) {
         this.performances.add(new Pair<>(title, type));
     }
 
     public void setbiography(String biography) {
         this.biography = biography;
+    }
+    public void displayInfo(){
+        System.out.println("Name: " + name + "\n"
+        + "Biography: " + biography + "\n"
+        + "Performances: ");
+        for(Pair<String, Type> performance : performances){
+            System.out.println(performance.getTitle() + " - " + performance.getType());
+        }
+        System.out.println("========================");
     }
 }

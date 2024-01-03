@@ -6,14 +6,15 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Request implements Subject {
     @JsonProperty("type")
     private RequestType type;
     @JsonProperty("createdDate")
-    String date;
-    //private LocalDateTime date;
+    Date date = new Date();
     String title;
     @JsonProperty("description")
     String description;
@@ -21,7 +22,46 @@ public class Request implements Subject {
     String usernameProblem;
     @JsonProperty("to")
     String usernameResolved;
-    List<Observer> users;
+    List<Observer> users = new ArrayList<>();
+
+    public void setType(RequestType type) {
+        this.type = type;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setUsernameProblem(String usernameProblem) {
+        this.usernameProblem = usernameProblem;
+    }
+
+    public void setUsernameResolved(String usernameResolved) {
+        this.usernameResolved = usernameResolved;
+    }
+
+    public void setUsers(List<Observer> users) {
+        this.users = users;
+    }
+
+    public String getUsernameProblem() {
+        return usernameProblem;
+    }
+    public void displayInfo(){
+        System.out.println("Request type: " + type + "\n"
+        + "Date created: " + date + "\n"
+        + "Title: " + title + "\n"
+        + "Description: " + description + "\n"
+        + "Username of the person the request is dedicated to: " + usernameResolved);
+    }
+    public String getUsernameResolved() {
+        return usernameResolved;
+    }
+
     @JsonSetter("actorName")
     public void setActorName(String actorName){
         title = actorName;
@@ -41,18 +81,14 @@ public class Request implements Subject {
     }
 
     @Override
-    public void notifyUsers() {
+    public void notifyUsers(String notification) {
         for(Observer user : users){
-            user.update(getUpdate());
+            user.update(notification);
         }
     }
 
-    @Override
-    public String getUpdate() {
-        return title + " " + description;
-    }
-    public int compareTo(Request req){
-        return this.description.compareTo(req.description);
+    public RequestType getType() {
+        return type;
     }
 
 }

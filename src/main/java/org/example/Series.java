@@ -1,8 +1,8 @@
 package org.example;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -13,17 +13,43 @@ public class Series extends Production{
     int numSeasons;
     @JsonProperty("seasons")
     private Map<String, List<Episode>> episodeDistribution;
+
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
+    public void setEpisodeDistribution(Map<String, List<Episode>> episodeDistribution) {
+        this.episodeDistribution = episodeDistribution;
+    }
+
+    public void setNumSeasons(int numSeasons) {
+        this.numSeasons = numSeasons;
+    }
+
+    public void addSeason(String name, ArrayList<Episode> episodes){
+        episodeDistribution.put(name, episodes);
+    }
     @Override
     public void displayInfo() {
         System.out.println(
-                "name:" + title + "\n"
-                + "year it aired: " + releaseYear + "\n"
-                + "number of seasons: " + numSeasons + "\n"
-        );
+                "Series name: " + title + "\n"
+                        + "Release year: " + releaseYear + "\n"
+                        + "Number of seasons: " + numSeasons + "\n");
+        System.out.println("Episode distribution: ");
+        for(Map.Entry<String, List<Episode>> entry: episodeDistribution.entrySet()){
+            String seasonName = entry.getKey();
+            List<Episode> episodes = entry.getValue();
+            System.out.println("Episode list for " + seasonName + ":");
+            for(Episode episode : episodes){
+                System.out.println(episode);
+            }
+        }
+        super.displayGeneralInfo();
     }
 
     @Override
-    public int compareTo(@NotNull Object o) {
-        return this.title.compareTo(((Series) o).title);
+    public boolean isMovieOrSeries() {
+        return false;
     }
+
 }

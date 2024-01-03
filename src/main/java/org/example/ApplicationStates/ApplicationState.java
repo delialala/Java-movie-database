@@ -14,7 +14,7 @@ public abstract class ApplicationState {
         try{
             decision = reader.readLine();
         } catch(Exception e){
-            e.printStackTrace();
+            System.out.println("Error in reading!");
         }
         return decision;
     }

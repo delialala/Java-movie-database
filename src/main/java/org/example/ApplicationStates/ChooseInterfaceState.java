@@ -1,8 +1,5 @@
 package org.example.ApplicationStates;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 public class ChooseInterfaceState extends ApplicationState{
     @Override
     public void next(Application app) {
@@ -20,7 +17,7 @@ public class ChooseInterfaceState extends ApplicationState{
     }
 
     void executeInput(Application app){
-        String decision = super.acceptInput();
+        String decision = acceptInput();
         if(decision.equals("1"))
             next(app);
         if(decision.equals("2"))

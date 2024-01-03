@@ -1,17 +1,9 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.SortedSet;
+import java.util.LinkedList;
 
 public class Admin<T> extends Staff{
-    int test;
-    SortedSet<T> contributions;
-
-    public SortedSet<T> getContributions() {
-        return contributions;
-    }
-
-    public void setContributions(SortedSet<T> contributions) {
-        this.contributions = contributions;
+    public static class RequestsHolder{
+        public static LinkedList<Request> adminRequests = new LinkedList<>();
     }
 }

@@ -1,8 +1,9 @@
 package org.example;
 
-public class Regular extends User implements RequestsManager{
+public class Regular<T> extends User<T> implements RequestsManager{
+    // couldn't find a use for these, sorry!
     void addRating(){
-        //ne dam cu parerea
+
     }
 
     @Override

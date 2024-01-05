@@ -1,6 +1,7 @@
 package org.example;
 
-public class Contributor extends Staff implements RequestsManager{
+public class Contributor<T> extends Staff implements RequestsManager{
+    // didn't know what to do with these
     @Override
     public void createRequest(Request r) {
 

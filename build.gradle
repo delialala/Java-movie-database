@@ -17,6 +17,10 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation "org.reflections:reflections:0.9.12"
+    implementation "org.pushing-pixels:radiance-theming:6.0.1"
+    implementation "com.jgoodies:forms:1.2.1"
+    implementation "com.jgoodies:jgoodies-common:1.8.1"
+
 }
 
 test {

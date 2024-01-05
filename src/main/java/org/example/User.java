@@ -254,7 +254,23 @@ public abstract class User<T> implements Comparable<User<T>>, Observer {
         }
         return false;
     }
-
+    public Rating whatRatingTheyveLeft(Production production){
+        for(Rating rating : production.getRatings())
+            if(rating.getUsername().equals(username))
+                return rating;
+        return null;
+    }
+    public boolean isInFavorites(String name){
+        for(T t : favorites){
+            if(t instanceof Production)
+                if(((Production) t).title.equals(name))
+                    return true;
+            if(t instanceof Actor)
+                if(((Actor) t).name.equals(name))
+                    return true;
+        }
+        return false;
+    }
     @Override
     public int compareTo(@NotNull User user) {
         return this.username.compareTo(user.username);

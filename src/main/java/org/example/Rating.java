@@ -14,6 +14,13 @@ public class Rating{
     @JsonProperty("comment")
     String comment;
 
+    public int getRating() {
+        return rating;
+    }
+
+    public String getComment() {
+        return comment;
+    }
 
     public void setUsername(String username) {
         this.username = username;
@@ -39,6 +46,6 @@ public class Rating{
     public String toString() {
         return "Rating by: " + username + "\n"
                 + "Score given: " + rating + "\n"
-                + "Comment: " + comment + "\n" + "\n";
+                + "Comment: " + comment + "\n";
     }
 }

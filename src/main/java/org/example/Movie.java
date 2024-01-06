@@ -27,6 +27,14 @@ public class Movie extends Production{
         this.releaseYear = releaseYear;
     }
 
+    public String getDuration() {
+        return duration;
+    }
+
+    public int getReleaseYear() {
+        return releaseYear;
+    }
+
     @Override
     public boolean isMovieOrSeries() {
         return true;

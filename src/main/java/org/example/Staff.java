@@ -53,6 +53,22 @@ public abstract class Staff<T> extends User<T> implements StaffInterface{
         productionsContribution.remove(production);
     }
 
+    public ArrayList<String> getProductionsContribution() {
+        ArrayList<String> productionNamesList = new ArrayList<>();
+        for(Production production : productionsContribution){
+            productionNamesList.add(production.title);
+        }
+        return productionNamesList;
+    }
+
+    public ArrayList<String> getActorsContribution() {
+        ArrayList<String> actorNamesList = new ArrayList<>();
+        for(Actor actor : actorsContribution){
+            actorNamesList.add(actor.name);
+        }
+        return actorNamesList;
+    }
+
     @Override
     public void removeActorSystem(String name) {
         Actor actor = IMDB.getInstance().getActor(name);

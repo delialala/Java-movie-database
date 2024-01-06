@@ -42,10 +42,10 @@ public class IMDB{
     }
 
     private IMDB(){
-        users = new ArrayList<>();
-        requests = new ArrayList<>();
-        productions = new ArrayList<>();
-        actors = new ArrayList<>();
+        users = new LinkedList<>();
+        requests = new LinkedList<>();
+        productions = new LinkedList<>();
+        actors = new LinkedList<>();
     }
 
     public static IMDB getInstance(){
@@ -72,6 +72,7 @@ public class IMDB{
 
         } catch (Exception ex) {
             System.out.println("Probleam reading json!");
+            ex.printStackTrace();
         }
         setRequests();
     }

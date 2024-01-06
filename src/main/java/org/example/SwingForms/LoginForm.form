@@ -486,7 +486,7 @@
                               <text value="Notifications"/>
                             </properties>
                           </component>
-                          <grid id="5b4cc" layout-manager="FormLayout">
+                          <grid id="5b4cc" binding="requestPanel" layout-manager="FormLayout">
                             <rowspec value="center:max(d;4px):noGrow"/>
                             <rowspec value="center:43px:noGrow"/>
                             <rowspec value="top:71dlu:noGrow"/>
@@ -662,11 +662,13 @@
                         </children>
                       </grid>
                       <grid id="19082" binding="manageDatabasePanel" layout-manager="FormLayout">
-                        <rowspec value="center:53px:noGrow"/>
+                        <rowspec value="center:57px:noGrow"/>
                         <rowspec value="top:4dlu:noGrow"/>
                         <rowspec value="center:78px:noGrow"/>
                         <rowspec value="top:10px:noGrow"/>
-                        <rowspec value="center:721px:noGrow"/>
+                        <rowspec value="center:627px:noGrow"/>
+                        <rowspec value="top:24dlu:noGrow"/>
+                        <rowspec value="center:max(d;4px):noGrow"/>
                         <colspec value="left:150px:noGrow"/>
                         <colspec value="fill:150px:noGrow"/>
                         <colspec value="left:153px:noGrow"/>
@@ -709,12 +711,13 @@
                                 <rowspec value="top:49px:noGrow"/>
                                 <rowspec value="center:50px:noGrow"/>
                                 <rowspec value="center:98px:noGrow"/>
-                                <rowspec value="top:50px:noGrow"/>
-                                <rowspec value="center:307px:noGrow"/>
+                                <rowspec value="top:51px:noGrow"/>
                                 <rowspec value="top:50px:noGrow"/>
                                 <rowspec value="center:max(d;4px):noGrow"/>
+                                <rowspec value="center:307px:noGrow"/>
+                                <rowspec value="top:58px:noGrow"/>
+                                <rowspec value="center:max(d;4px):noGrow"/>
                                 <colspec value="fill:190px:noGrow"/>
-                                <colspec value="fill:100px:noGrow"/>
                                 <colspec value="left:188px:noGrow"/>
                                 <colspec value="left:186px:noGrow"/>
                                 <colspec value="fill:188px:noGrow"/>
@@ -722,7 +725,7 @@
                                 <colspec value="left:595dlu:noGrow"/>
                                 <colspec value="fill:max(d;4px):noGrow"/>
                                 <constraints>
-                                  <card name="Card1"/>
+                                  <card name="productionCard"/>
                                 </constraints>
                                 <properties/>
                                 <border type="none"/>
@@ -733,7 +736,7 @@
                                       <forms defaultalign-horz="false" defaultalign-vert="false"/>
                                     </constraints>
                                     <properties>
-                                      <text value="Name:"/>
+                                      <text value="Title:"/>
                                     </properties>
                                   </component>
                                   <component id="bcffd" class="javax.swing.JLabel">
@@ -774,7 +777,7 @@
                                   </component>
                                   <grid id="f2bec" binding="seriesOrMovieHolder" layout-manager="CardLayout" hgap="0" vgap="0">
                                     <constraints>
-                                      <grid row="6" column="0" row-span="1" col-span="7" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                      <grid row="8" column="0" row-span="1" col-span="6" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                                       <forms defaultalign-vert="false"/>
                                     </constraints>
                                     <properties/>
@@ -785,7 +788,7 @@
                                         <colspec value="fill:190px:noGrow"/>
                                         <colspec value="fill:187px:noGrow"/>
                                         <constraints>
-                                          <card name="Card1"/>
+                                          <card name="movieCard"/>
                                         </constraints>
                                         <properties/>
                                         <border type="none"/>
@@ -799,7 +802,7 @@
                                               <text value="Duration:"/>
                                             </properties>
                                           </component>
-                                          <component id="32080" class="javax.swing.JTextField" default-binding="true">
+                                          <component id="32080" class="javax.swing.JTextField" binding="durationTextField">
                                             <constraints>
                                               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
                                                 <preferred-size width="150" height="-1"/>
@@ -812,9 +815,17 @@
                                       </grid>
                                       <grid id="3457" binding="seriesPanel" layout-manager="FormLayout">
                                         <rowspec value="center:50px:noGrow"/>
+                                        <rowspec value="top:53px:noGrow"/>
+                                        <colspec value="fill:186px:noGrow"/>
+                                        <colspec value="left:185px:noGrow"/>
                                         <colspec value="fill:187px:noGrow"/>
+                                        <colspec value="left:186px:noGrow"/>
+                                        <colspec value="left:185px:noGrow"/>
+                                        <colspec value="fill:190px:noGrow"/>
+                                        <colspec value="left:187px:noGrow"/>
+                                        <colspec value="fill:max(d;4px):noGrow"/>
                                         <constraints>
-                                          <card name="Card2"/>
+                                          <card name="seriesCard"/>
                                         </constraints>
                                         <properties/>
                                         <border type="none"/>
@@ -826,6 +837,85 @@
                                             </constraints>
                                             <properties>
                                               <text value="Episode distribution:"/>
+                                            </properties>
+                                          </component>
+                                          <component id="896b7" class="javax.swing.JComboBox" binding="seasonsComboBox">
+                                            <constraints>
+                                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                            </constraints>
+                                            <properties/>
+                                          </component>
+                                          <component id="2ebbd" class="javax.swing.JTextField" binding="seasonNameTextField">
+                                            <constraints>
+                                              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+                                                <preferred-size width="150" height="-1"/>
+                                              </grid>
+                                              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                            </constraints>
+                                            <properties/>
+                                          </component>
+                                          <component id="40c35" class="javax.swing.JButton" binding="addEpisodeButton">
+                                            <constraints>
+                                              <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                            </constraints>
+                                            <properties>
+                                              <text value="Add"/>
+                                            </properties>
+                                          </component>
+                                          <component id="a3295" class="javax.swing.JTextField" binding="episodeTextField">
+                                            <constraints>
+                                              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+                                                <preferred-size width="150" height="-1"/>
+                                              </grid>
+                                              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                            </constraints>
+                                            <properties/>
+                                          </component>
+                                          <component id="9784d" class="javax.swing.JButton" binding="deleteEpisodeButton">
+                                            <constraints>
+                                              <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                            </constraints>
+                                            <properties>
+                                              <text value="Delete"/>
+                                            </properties>
+                                          </component>
+                                          <component id="491d3" class="javax.swing.JComboBox" binding="episodesComboBox">
+                                            <constraints>
+                                              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                            </constraints>
+                                            <properties/>
+                                          </component>
+                                          <component id="a5822" class="javax.swing.JTextField" binding="epDurationTextField">
+                                            <constraints>
+                                              <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+                                                <preferred-size width="150" height="-1"/>
+                                              </grid>
+                                              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                            </constraints>
+                                            <properties>
+                                              <text value=""/>
+                                            </properties>
+                                          </component>
+                                          <component id="8db08" class="javax.swing.JButton" binding="addSeasonButton">
+                                            <constraints>
+                                              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                            </constraints>
+                                            <properties>
+                                              <text value="Add"/>
+                                            </properties>
+                                          </component>
+                                          <component id="5647a" class="javax.swing.JButton" binding="deleteSeasonButton">
+                                            <constraints>
+                                              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                            </constraints>
+                                            <properties>
+                                              <text value="Delete"/>
                                             </properties>
                                           </component>
                                         </children>
@@ -843,23 +933,23 @@
                                   </component>
                                   <component id="f3f8f" class="javax.swing.JButton" binding="submitButton">
                                     <constraints>
-                                      <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                      <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                                       <forms defaultalign-vert="false"/>
                                     </constraints>
                                     <properties>
                                       <text value="Submit"/>
                                     </properties>
                                   </component>
-                                  <component id="a2983" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
+                                  <component id="a2983" class="javax.swing.JComboBox" binding="directorsComboBox">
                                     <constraints>
-                                      <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                                       <forms defaultalign-horz="false" defaultalign-vert="false"/>
                                     </constraints>
                                     <properties/>
                                   </component>
-                                  <component id="33850" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+                                  <component id="33850" class="javax.swing.JTextField" binding="directorTextField">
                                     <constraints>
-                                      <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+                                      <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
                                         <preferred-size width="150" height="-1"/>
                                       </grid>
                                       <forms defaultalign-horz="false" defaultalign-vert="false"/>
@@ -868,7 +958,7 @@
                                   </component>
                                   <component id="87ed8" class="javax.swing.JButton" binding="addDirectorButton">
                                     <constraints>
-                                      <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                      <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                                       <forms defaultalign-vert="false"/>
                                     </constraints>
                                     <properties>
@@ -877,106 +967,106 @@
                                   </component>
                                   <component id="94b1e" class="javax.swing.JButton" binding="deleteDirectorButton">
                                     <constraints>
-                                      <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                      <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                                       <forms defaultalign-vert="false"/>
                                     </constraints>
                                     <properties>
                                       <text value="Delete"/>
                                     </properties>
                                   </component>
-                                  <component id="7c4b7" class="javax.swing.JComboBox" default-binding="true">
+                                  <component id="7c4b7" class="javax.swing.JComboBox" binding="actorsComboBox">
                                     <constraints>
-                                      <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                      <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                                       <forms defaultalign-horz="false" defaultalign-vert="false"/>
                                     </constraints>
                                     <properties/>
                                   </component>
-                                  <component id="aa093" class="javax.swing.JTextField" default-binding="true">
+                                  <component id="aa093" class="javax.swing.JTextField" binding="actorTextField">
                                     <constraints>
-                                      <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+                                      <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
                                         <preferred-size width="150" height="-1"/>
                                       </grid>
                                       <forms defaultalign-horz="false" defaultalign-vert="false"/>
                                     </constraints>
                                     <properties/>
                                   </component>
-                                  <component id="35c2e" class="javax.swing.JButton">
+                                  <component id="35c2e" class="javax.swing.JButton" binding="addActorButton">
+                                    <constraints>
+                                      <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Add"/>
+                                    </properties>
+                                  </component>
+                                  <component id="46736" class="javax.swing.JButton" binding="deleteActorButton">
                                     <constraints>
                                       <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                                       <forms defaultalign-vert="false"/>
                                     </constraints>
                                     <properties>
-                                      <text value="Add"/>
-                                    </properties>
-                                  </component>
-                                  <component id="46736" class="javax.swing.JButton">
-                                    <constraints>
-                                      <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                                      <forms defaultalign-vert="false"/>
-                                    </constraints>
-                                    <properties>
                                       <text value="Delete"/>
                                     </properties>
                                   </component>
-                                  <component id="93d9a" class="javax.swing.JComboBox" default-binding="true">
+                                  <component id="93d9a" class="javax.swing.JComboBox" binding="genresComboBox">
                                     <constraints>
-                                      <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                      <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                                       <forms defaultalign-horz="false" defaultalign-vert="false"/>
                                     </constraints>
                                     <properties/>
                                   </component>
-                                  <component id="21be4" class="javax.swing.JTextField" default-binding="true">
+                                  <component id="21be4" class="javax.swing.JTextField" binding="genreTextField">
                                     <constraints>
-                                      <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+                                      <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
                                         <preferred-size width="150" height="-1"/>
                                       </grid>
                                       <forms defaultalign-horz="false" defaultalign-vert="false"/>
                                     </constraints>
                                     <properties/>
                                   </component>
-                                  <component id="b810f" class="javax.swing.JButton">
+                                  <component id="b810f" class="javax.swing.JButton" binding="addGenreButton">
+                                    <constraints>
+                                      <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Add"/>
+                                    </properties>
+                                  </component>
+                                  <component id="7d85a" class="javax.swing.JButton" binding="deleteGenreButton">
                                     <constraints>
                                       <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                                       <forms defaultalign-vert="false"/>
                                     </constraints>
                                     <properties>
-                                      <text value="Add"/>
-                                    </properties>
-                                  </component>
-                                  <component id="7d85a" class="javax.swing.JButton">
-                                    <constraints>
-                                      <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                                      <forms defaultalign-vert="false"/>
-                                    </constraints>
-                                    <properties>
                                       <text value="Delete"/>
                                     </properties>
                                   </component>
-                                  <component id="5ed43" class="javax.swing.JTextField" default-binding="true">
+                                  <component id="5ed43" class="javax.swing.JTextField" binding="titleTextField">
                                     <constraints>
-                                      <grid row="0" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+                                      <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
                                         <preferred-size width="150" height="-1"/>
                                       </grid>
                                       <forms defaultalign-horz="false" defaultalign-vert="false"/>
                                     </constraints>
                                     <properties/>
                                   </component>
-                                  <component id="27861" class="javax.swing.JSpinner" binding="spinner1" default-binding="true">
+                                  <component id="27861" class="javax.swing.JSpinner" binding="releaseYearSpinner">
                                     <constraints>
-                                      <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false"/>
+                                      <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false"/>
                                       <forms defaultalign-horz="false" defaultalign-vert="false"/>
                                     </constraints>
                                     <properties/>
                                   </component>
                                   <scrollpane id="296c3">
                                     <constraints>
-                                      <grid row="4" column="2" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                      <grid row="4" column="1" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                                       <forms defaultalign-horz="false" defaultalign-vert="false"/>
                                     </constraints>
                                     <properties/>
                                     <border type="none"/>
                                     <children>
-                                      <component id="ba330" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+                                      <component id="ba330" class="javax.swing.JTextArea" binding="plotTextArea">
                                         <constraints/>
                                         <properties>
                                           <lineWrap value="true"/>
@@ -984,27 +1074,324 @@
                                       </component>
                                     </children>
                                   </scrollpane>
+                                  <component id="41bdb" class="javax.swing.JLabel">
+                                    <constraints>
+                                      <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Type:"/>
+                                    </properties>
+                                  </component>
+                                  <component id="70c8c" class="javax.swing.JRadioButton" binding="movieRadioButton">
+                                    <constraints>
+                                      <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Movie"/>
+                                    </properties>
+                                  </component>
+                                  <component id="b2345" class="javax.swing.JRadioButton" binding="seriesRadioButton">
+                                    <constraints>
+                                      <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Series"/>
+                                    </properties>
+                                  </component>
                                 </children>
                               </grid>
                               <grid id="67d0d" binding="actorEditPanel" layout-manager="FormLayout">
-                                <rowspec value="center:d:grow"/>
-                                <colspec value="fill:d:grow"/>
+                                <rowspec value="center:50px:noGrow"/>
+                                <rowspec value="top:115px:noGrow"/>
+                                <rowspec value="center:50px:noGrow"/>
+                                <rowspec value="top:268dlu:noGrow"/>
+                                <rowspec value="center:65px:noGrow"/>
+                                <colspec value="fill:187px:noGrow"/>
+                                <colspec value="left:188px:noGrow"/>
+                                <colspec value="fill:188px:noGrow"/>
+                                <colspec value="left:188px:noGrow"/>
+                                <colspec value="fill:190px:noGrow"/>
+                                <colspec value="left:187px:noGrow"/>
+                                <colspec value="fill:max(d;4px):noGrow"/>
                                 <constraints>
-                                  <card name="Card2"/>
+                                  <card name="actorCard"/>
                                 </constraints>
                                 <properties/>
                                 <border type="none"/>
-                                <children/>
+                                <children>
+                                  <component id="75f54" class="javax.swing.JLabel">
+                                    <constraints>
+                                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Name:"/>
+                                    </properties>
+                                  </component>
+                                  <component id="70c8b" class="javax.swing.JLabel">
+                                    <constraints>
+                                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Biography:"/>
+                                    </properties>
+                                  </component>
+                                  <component id="edeeb" class="javax.swing.JLabel">
+                                    <constraints>
+                                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Performances:"/>
+                                    </properties>
+                                  </component>
+                                  <component id="604de" class="javax.swing.JTextArea" binding="biographyTextArea">
+                                    <constraints>
+                                      <grid row="1" column="1" row-span="1" col-span="5" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <lineWrap value="true"/>
+                                    </properties>
+                                  </component>
+                                  <component id="a76f9" class="javax.swing.JTextField" binding="actorNameTextField">
+                                    <constraints>
+                                      <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+                                        <preferred-size width="150" height="-1"/>
+                                      </grid>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties/>
+                                  </component>
+                                  <component id="b08a7" class="javax.swing.JComboBox" binding="performancesComboBox">
+                                    <constraints>
+                                      <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties/>
+                                  </component>
+                                  <component id="8e68f" class="javax.swing.JTextField" binding="performanceTextField">
+                                    <constraints>
+                                      <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+                                        <preferred-size width="150" height="-1"/>
+                                      </grid>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties/>
+                                  </component>
+                                  <component id="96d48" class="javax.swing.JComboBox" binding="performanceTypeComboBox">
+                                    <constraints>
+                                      <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties/>
+                                  </component>
+                                  <component id="20b57" class="javax.swing.JButton" binding="addPerformanceButton">
+                                    <constraints>
+                                      <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Add"/>
+                                    </properties>
+                                  </component>
+                                  <component id="92302" class="javax.swing.JButton" binding="deletePerformanceButton">
+                                    <constraints>
+                                      <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Delete"/>
+                                    </properties>
+                                  </component>
+                                </children>
                               </grid>
                               <grid id="d8126" binding="userEditPanel" layout-manager="FormLayout">
-                                <rowspec value="center:d:grow"/>
-                                <colspec value="fill:d:grow"/>
+                                <rowspec value="center:50px:noGrow"/>
+                                <rowspec value="top:50px:noGrow"/>
+                                <rowspec value="center:53px:noGrow"/>
+                                <rowspec value="top:49px:noGrow"/>
+                                <rowspec value="center:52px:noGrow"/>
+                                <rowspec value="top:52px:noGrow"/>
+                                <rowspec value="center:55px:noGrow"/>
+                                <rowspec value="top:50px:noGrow"/>
+                                <rowspec value="center:max(d;4px):noGrow"/>
+                                <rowspec value="top:50px:noGrow"/>
+                                <rowspec value="center:max(d;4px):noGrow"/>
+                                <colspec value="fill:187px:noGrow"/>
+                                <colspec value="left:190px:noGrow"/>
+                                <colspec value="fill:187px:noGrow"/>
                                 <constraints>
-                                  <card name="Card3"/>
+                                  <card name="userCard"/>
                                 </constraints>
                                 <properties/>
                                 <border type="none"/>
-                                <children/>
+                                <children>
+                                  <component id="67193" class="javax.swing.JLabel">
+                                    <constraints>
+                                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="User type:"/>
+                                    </properties>
+                                  </component>
+                                  <component id="a4234" class="javax.swing.JLabel">
+                                    <constraints>
+                                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Mail:"/>
+                                    </properties>
+                                  </component>
+                                  <component id="80bea" class="javax.swing.JLabel">
+                                    <constraints>
+                                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Password:"/>
+                                    </properties>
+                                  </component>
+                                  <component id="3f532" class="javax.swing.JLabel">
+                                    <constraints>
+                                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Name:"/>
+                                    </properties>
+                                  </component>
+                                  <component id="d0325" class="javax.swing.JLabel">
+                                    <constraints>
+                                      <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Country:"/>
+                                    </properties>
+                                  </component>
+                                  <component id="b34c8" class="javax.swing.JLabel">
+                                    <constraints>
+                                      <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Age:"/>
+                                    </properties>
+                                  </component>
+                                  <component id="4e6da" class="javax.swing.JLabel">
+                                    <constraints>
+                                      <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Birthdate:"/>
+                                    </properties>
+                                  </component>
+                                  <component id="1fe32" class="javax.swing.JLabel">
+                                    <constraints>
+                                      <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Username:"/>
+                                    </properties>
+                                  </component>
+                                  <component id="e3345" class="javax.swing.JComboBox" binding="userTypeComboBox">
+                                    <constraints>
+                                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <model/>
+                                    </properties>
+                                  </component>
+                                  <component id="282cc" class="javax.swing.JTextField" binding="mailTextField">
+                                    <constraints>
+                                      <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+                                        <preferred-size width="150" height="-1"/>
+                                      </grid>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties/>
+                                  </component>
+                                  <component id="41a53" class="javax.swing.JTextField" binding="nameTextField">
+                                    <constraints>
+                                      <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+                                        <preferred-size width="150" height="-1"/>
+                                      </grid>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties/>
+                                  </component>
+                                  <component id="63af7" class="javax.swing.JTextField" binding="countryTextField">
+                                    <constraints>
+                                      <grid row="4" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+                                        <preferred-size width="150" height="-1"/>
+                                      </grid>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties/>
+                                  </component>
+                                  <component id="f0edc" class="javax.swing.JTextField" binding="birthdateTextField">
+                                    <constraints>
+                                      <grid row="6" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+                                        <preferred-size width="150" height="-1"/>
+                                      </grid>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties/>
+                                  </component>
+                                  <component id="5d0f7" class="javax.swing.JTextField" binding="usernameTextField">
+                                    <constraints>
+                                      <grid row="9" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+                                        <preferred-size width="150" height="-1"/>
+                                      </grid>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties/>
+                                  </component>
+                                  <component id="1d05f" class="javax.swing.JSpinner" binding="ageSpinner">
+                                    <constraints>
+                                      <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties/>
+                                  </component>
+                                  <component id="c7f30" class="javax.swing.JTextField" binding="passwordTextField">
+                                    <constraints>
+                                      <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+                                        <preferred-size width="150" height="-1"/>
+                                      </grid>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties/>
+                                  </component>
+                                  <component id="53128" class="javax.swing.JLabel">
+                                    <constraints>
+                                      <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties>
+                                      <text value="Gender:"/>
+                                    </properties>
+                                  </component>
+                                  <component id="b0d0a" class="javax.swing.JTextField" binding="genderTextField">
+                                    <constraints>
+                                      <grid row="7" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
+                                        <preferred-size width="150" height="-1"/>
+                                      </grid>
+                                      <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                                    </constraints>
+                                    <properties/>
+                                  </component>
+                                </children>
                               </grid>
                             </children>
                           </grid>
@@ -1091,12 +1478,21 @@
                               <text value="Delete user"/>
                             </properties>
                           </component>
-                          <component id="a65a8" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+                          <component id="a65a8" class="javax.swing.JComboBox" binding="entitiesComboBox">
                             <constraints>
                               <grid row="2" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                               <forms defaultalign-horz="false" defaultalign-vert="false"/>
                             </constraints>
                             <properties/>
+                          </component>
+                          <component id="289c7" class="javax.swing.JButton" binding="submitButon">
+                            <constraints>
+                              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Submit"/>
+                            </properties>
                           </component>
                         </children>
                       </grid>
@@ -1505,6 +1901,10 @@
       <member id="523a3"/>
       <member id="19e60"/>
       <member id="9f000"/>
+    </group>
+    <group name="movieOrSeriesGroup">
+      <member id="70c8c"/>
+      <member id="b2345"/>
     </group>
   </buttonGroups>
 </form>

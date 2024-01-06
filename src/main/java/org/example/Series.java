@@ -52,4 +52,15 @@ public class Series extends Production{
         return false;
     }
 
+    public int getReleaseYear() {
+        return releaseYear;
+    }
+
+    public int getNumSeasons() {
+        return numSeasons;
+    }
+
+    public Map<String, List<Episode>> getEpisodeDistribution() {
+        return episodeDistribution;
+    }
 }

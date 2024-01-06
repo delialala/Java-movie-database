@@ -26,6 +26,7 @@ public abstract class Production implements Comparable, Subject{
     List<Genre> genres = new ArrayList<>();
     @JsonProperty("ratings")
     List<Rating> ratings = new ArrayList<>();
+
     @JsonProperty("plot")
     String plot;
     @JsonProperty("averageRating")
@@ -40,6 +41,22 @@ public abstract class Production implements Comparable, Subject{
                 return true;
         }
         return false;
+    }
+
+    public List<String> getDirectors() {
+        return directors;
+    }
+
+    public List<String> getActors() {
+        return actors;
+    }
+
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    public String getPlot() {
+        return plot;
     }
 
     public List<Rating> getRatings() {

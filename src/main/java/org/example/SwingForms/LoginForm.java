@@ -434,7 +434,8 @@ public class LoginForm extends JFrame{
         movieIssueRadioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                requestBox.setModel(new DefaultComboBoxModel<String>(getProductionsNameArray(IMDB.getInstance().getProductions()).toArray(new String[0])));
+
+                entitiesComboBox.setModel(new DefaultComboBoxModel<String>(((Staff<?>)currentUser).getProductionsContribution().toArray(new String[0])));
                 requestBox.setEnabled(true);
             }
         });
@@ -574,7 +575,7 @@ public class LoginForm extends JFrame{
                 clearProduction();
                 ((CardLayout)editorHolder.getLayout()).show(editorHolder, "productionCard");
                 setPanelEnabled(productionEditPanel, false);
-                entitiesComboBox.setModel(new DefaultComboBoxModel<String>(getProductionsNameArray(IMDB.getInstance().getProductions()).toArray(new String[0])));
+                entitiesComboBox.setModel(new DefaultComboBoxModel<String>(((Staff<?>)currentUser).getProductionsContribution().toArray(new String[0])));
             }
         });
         modifyProductionRadioButton.addActionListener(new ActionListener() {
@@ -582,7 +583,7 @@ public class LoginForm extends JFrame{
             public void actionPerformed(ActionEvent actionEvent) {
                 ((CardLayout)editorHolder.getLayout()).show(editorHolder, "productionCard");
                 setPanelEnabled(productionEditPanel, true);
-                entitiesComboBox.setModel(new DefaultComboBoxModel<String>(getProductionsNameArray(IMDB.getInstance().getProductions()).toArray(new String[0])));
+                entitiesComboBox.setModel(new DefaultComboBoxModel<String>(((Staff<?>)currentUser).getProductionsContribution().toArray(new String[0])));
                 setCurrentProduction(IMDB.getInstance().getProduction((String)entitiesComboBox.getSelectedItem()));
                 movieRadioButton.setEnabled(false);
                 seriesRadioButton.setEnabled(false);
@@ -603,7 +604,7 @@ public class LoginForm extends JFrame{
                 clearActor();
                 ((CardLayout)editorHolder.getLayout()).show(editorHolder, "actorCard");
                 setPanelEnabled(actorEditPanel, false);
-                entitiesComboBox.setModel(new DefaultComboBoxModel<>(getActorsNameArray(IMDB.getInstance().getActors()).toArray(new String[0])));
+                entitiesComboBox.setModel(new DefaultComboBoxModel<String>(((Staff<?>)currentUser).getActorsContribution().toArray(new String[0])));
             }
         });
         modifyActorRadioButton.addActionListener(new ActionListener() {
@@ -611,7 +612,7 @@ public class LoginForm extends JFrame{
             public void actionPerformed(ActionEvent actionEvent) {
                 ((CardLayout)editorHolder.getLayout()).show(editorHolder, "actorCard");
                 setPanelEnabled(actorEditPanel, true);
-                entitiesComboBox.setModel(new DefaultComboBoxModel<>(getActorsNameArray(IMDB.getInstance().getActors()).toArray(new String[0])));
+                entitiesComboBox.setModel(new DefaultComboBoxModel<String>(((Staff<?>)currentUser).getActorsContribution().toArray(new String[0])));
                 setCurrentActor(IMDB.getInstance().getActor((String)entitiesComboBox.getSelectedItem()));
             }
         });
@@ -767,6 +768,7 @@ public class LoginForm extends JFrame{
                     production.setTitle("");
                     production.addObserver(currentUser);
                     ((Staff)currentUser).addProductionSystem(production);
+                    entitiesComboBox.addItem(titleTextField.getText());
                 }
                 if(modifyProductionRadioButton.isSelected()){
                     production = crtProduction;
@@ -802,11 +804,17 @@ public class LoginForm extends JFrame{
                     ((Staff<?>) currentUser).removeProductionSystem((String)entitiesComboBox.getSelectedItem());
                     entitiesComboBox.removeItem((String)entitiesComboBox.getSelectedItem());
                 }
+                if(actorNameTextField.getText().isEmpty()
+                || biographyTextArea.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(new JFrame(), "Empty field!");
+                    return;
+                }
                 Actor actor = null;
                 if(addActorRadioButton.isSelected()){
                     actor = new Actor();
                     actor.setname("");
                     ((Staff<?>)currentUser).addActorSystem(actor);
+                    entitiesComboBox.addItem(actorNameTextField.getText());
                 }
                 if(modifyActorRadioButton.isSelected()){
                     actor = crtActor;

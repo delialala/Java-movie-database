@@ -2,11 +2,11 @@ package org.example;
 
 public interface StaffInterface {
 
-    public void addProductionSystem(Production p);
-    public void addActorSystem(Actor a);
-    public void removeProductionSystem(String name);
-    public void removeActorSystem(String name);
-    public void updateProduction(Production p);
-    public void updateActor(Actor a);
+     void addProductionSystem(Production p);
+     void addActorSystem(Actor a);
+     void removeProductionSystem(String name);
+     void removeActorSystem(String name);
+     void updateProduction(Production p);
+     void updateActor(Actor a);
 
 }

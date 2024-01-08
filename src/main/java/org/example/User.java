@@ -6,12 +6,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import org.example.ApplicationStates.Application;
 import org.jetbrains.annotations.NotNull;
 
-
-import java.text.DateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @JsonTypeInfo(

@@ -1593,8 +1593,6 @@
                     </properties>
                   </component>
                   <grid id="5c8d6" binding="sexyActorSettings" layout-manager="FormLayout">
-                    <rowspec value="center:40px:noGrow"/>
-                    <rowspec value="top:40px:noGrow"/>
                     <rowspec value="top:40px:noGrow"/>
                     <rowspec value="center:40px:noGrow"/>
                     <colspec value="fill:189px:noGrow"/>
@@ -1607,29 +1605,9 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="b68b4" class="javax.swing.JLabel">
-                        <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                          <forms/>
-                        </constraints>
-                        <properties>
-                          <font size="12"/>
-                          <text value="Minimum number of reviews"/>
-                        </properties>
-                      </component>
-                      <component id="fd28d" class="javax.swing.JLabel">
-                        <constraints>
-                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                          <forms defaultalign-vert="false"/>
-                        </constraints>
-                        <properties>
-                          <font size="12"/>
-                          <text value="Maximum number of reviews"/>
-                        </properties>
-                      </component>
                       <component id="c3955" class="javax.swing.JLabel">
                         <constraints>
-                          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                           <forms defaultalign-vert="false"/>
                         </constraints>
                         <properties>
@@ -1639,7 +1617,7 @@
                       </component>
                       <component id="4fe41" class="javax.swing.JLabel">
                         <constraints>
-                          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                           <forms/>
                         </constraints>
                         <properties>
@@ -1647,7 +1625,7 @@
                           <text value="Maximum number of performances"/>
                         </properties>
                       </component>
-                      <component id="37694" class="javax.swing.JSpinner" binding="actorMinReviews">
+                      <component id="3a65c" class="javax.swing.JSpinner" binding="actorMinPerformances">
                         <constraints>
                           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false"/>
                           <forms defaultalign-horz="false" defaultalign-vert="false"/>
@@ -1656,27 +1634,9 @@
                           <toolTipText value=""/>
                         </properties>
                       </component>
-                      <component id="cfb58" class="javax.swing.JSpinner" binding="actorMaxReviews">
-                        <constraints>
-                          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false"/>
-                          <forms defaultalign-horz="false" defaultalign-vert="false"/>
-                        </constraints>
-                        <properties>
-                          <toolTipText value=""/>
-                        </properties>
-                      </component>
-                      <component id="3a65c" class="javax.swing.JSpinner" binding="actorMinPerformances">
-                        <constraints>
-                          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false"/>
-                          <forms defaultalign-horz="false" defaultalign-vert="false"/>
-                        </constraints>
-                        <properties>
-                          <toolTipText value=""/>
-                        </properties>
-                      </component>
                       <component id="2d67f" class="javax.swing.JSpinner" binding="actorMaxPerformances">
                         <constraints>
-                          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false"/>
+                          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false"/>
                           <forms defaultalign-horz="false" defaultalign-vert="false"/>
                         </constraints>
                         <properties>

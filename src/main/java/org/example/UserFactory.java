@@ -6,10 +6,10 @@ public class UserFactory {
             return new Regular();
         }
         if(type == AccountType.Contributor){
-            return new Regular();
+            return new Contributor();
         }
         if(type == AccountType.Admin){
-            return new Regular();
+            return new Admin();
         }
         return null;
     }

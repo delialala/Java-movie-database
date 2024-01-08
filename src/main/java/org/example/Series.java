@@ -56,10 +56,6 @@ public class Series extends Production{
         return releaseYear;
     }
 
-    public int getNumSeasons() {
-        return numSeasons;
-    }
-
     public Map<String, List<Episode>> getEpisodeDistribution() {
         return episodeDistribution;
     }

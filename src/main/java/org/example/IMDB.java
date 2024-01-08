@@ -6,9 +6,8 @@ import java.util.*;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.ApplicationStates.Application;
 import org.example.SwingForms.LoginForm;
-
-import org.pushingpixels.radiance.theming.api.skin.*;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
@@ -72,7 +71,6 @@ public class IMDB{
 
         } catch (Exception ex) {
             System.out.println("Probleam reading json!");
-            ex.printStackTrace();
         }
         setRequests();
     }
@@ -162,36 +160,23 @@ public class IMDB{
     }
     public void doSwing(){
         try{
-            /*SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    try{
-                        UIManager.setLookAndFeel(new RadianceAutumnLookAndFeel());
-                    } catch(Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            });*/
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
             setUIFont (new javax.swing.plaf.FontUIResource(new Font("MS Mincho",Font.PLAIN, 24)));
             LoginForm form = new LoginForm();
             form.setContentPane(form.mainPanel);
             form.setTitle("IMDB");
 
-            GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-
             form.setExtendedState(Frame.MAXIMIZED_BOTH);
             form.setMinimumSize(new Dimension(1920, 1080));
             form.setMaximumSize(new Dimension(1920, 1080));
             form.setVisible(true);
         }catch(Exception e){
-            e.printStackTrace();
+            System.out.println("Problem with swing!");
         }
     }
     public static void main(String[] args){
         IMDB.getInstance().run();
-        //Application app = new Application();
-        IMDB.getInstance().doSwing();
+        new Application();
 
     }
 }

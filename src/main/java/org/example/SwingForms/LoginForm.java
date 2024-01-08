@@ -1,7 +1,6 @@
 package org.example.SwingForms;
 
 import org.example.*;
-import org.example.ApplicationStates.Application;
 
 import javax.swing.*;
 import java.awt.*;
@@ -170,8 +169,8 @@ public class LoginForm extends JFrame{
         ratingsPanel.setLayout(new GridLayout(0, 1));
         notificationsPanel.setLayout(new GridLayout(0, 1));
 
-        actorMinReviews.setModel(new SpinnerNumberModel(0, 0, 10, 1));
-        actorMaxReviews.setModel(new SpinnerNumberModel(0, 0, 10, 1));
+        //actorMinReviews.setModel(new SpinnerNumberModel(0, 0, 10, 1));
+        //actorMaxReviews.setModel(new SpinnerNumberModel(0, 0, 10, 1));
         actorMinPerformances.setModel(new SpinnerNumberModel(0, 0, 10, 1));
         actorMaxPerformances.setModel(new SpinnerNumberModel(0, 0, 10, 1));
         productionMinReviews.setModel(new SpinnerNumberModel(0, 0, 10, 1));
@@ -311,6 +310,11 @@ public class LoginForm extends JFrame{
                 }
 
                 if(userExists){
+                    scrollerPanel.removeAll();
+                    loadProductions(((LinkedList<Production>)IMDB.getInstance().getProductions()));
+                    scrollerPanel.revalidate();
+                    scrollerPanel.repaint();
+
                     ((CardLayout)mainPanel.getLayout()).show(mainPanel, "MainPage");
                     ((CardLayout)listHolder.getLayout()).show(listHolder, "scrollerCard");
                     currentTabTitle.setText("Productions");
@@ -435,7 +439,7 @@ public class LoginForm extends JFrame{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
-                entitiesComboBox.setModel(new DefaultComboBoxModel<String>(((Staff<?>)currentUser).getProductionsContribution().toArray(new String[0])));
+                requestBox.setModel(new DefaultComboBoxModel<String>(getProductionsNameArray(IMDB.getInstance().getProductions()).toArray(new String[0])));
                 requestBox.setEnabled(true);
             }
         });
@@ -549,6 +553,7 @@ public class LoginForm extends JFrame{
         backDatabaseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                scrollerPanel.removeAll();
                 loadProductions((LinkedList<Production>) IMDB.getInstance().getProductions());
 
                 ((CardLayout)listHolder.getLayout()).show(listHolder, "scrollerCard");
@@ -781,7 +786,6 @@ public class LoginForm extends JFrame{
                         return;
                     }
                     production.setTitle(titleTextField.getText());
-                    System.out.println(titleTextField.getText() + "asdfasdfasdf");
                     production.setDirectors(directorList);
                     production.setActors(actorList);
                     production.setGenres(genreList);
@@ -804,23 +808,28 @@ public class LoginForm extends JFrame{
                     ((Staff<?>) currentUser).removeProductionSystem((String)entitiesComboBox.getSelectedItem());
                     entitiesComboBox.removeItem((String)entitiesComboBox.getSelectedItem());
                 }
-                if(actorNameTextField.getText().isEmpty()
-                || biographyTextArea.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(new JFrame(), "Empty field!");
-                    return;
-                }
+
                 Actor actor = null;
                 if(addActorRadioButton.isSelected()){
+                    if(actorNameTextField.getText().isEmpty()
+                            || biographyTextArea.getText().isEmpty()){
+                        JOptionPane.showMessageDialog(new JFrame(), "Empty field!");
+                        return;
+                    }
                     actor = new Actor();
                     actor.setname("");
                     ((Staff<?>)currentUser).addActorSystem(actor);
                     entitiesComboBox.addItem(actorNameTextField.getText());
                 }
                 if(modifyActorRadioButton.isSelected()){
+                    if(actorNameTextField.getText().isEmpty()
+                            || biographyTextArea.getText().isEmpty()){
+                        JOptionPane.showMessageDialog(new JFrame(), "Empty field!");
+                        return;
+                    }
                     actor = crtActor;
                 }
                 if(addActorRadioButton.isSelected() || modifyActorRadioButton.isSelected()){
-                    System.out.println(modifyActorRadioButton.isSelected());
                     actor.setPerformances(performances);
                     actor.setname(actorNameTextField.getText());
                     actor.setbiography(biographyTextArea.getText());
@@ -858,7 +867,7 @@ public class LoginForm extends JFrame{
                             return;
                         }
                     for(User<?> user1 : IMDB.getInstance().getUsers())
-                        if (user1.getUsername().equals(nameTextField.getText())) {
+                        if (user1.getUsername().equals(usernameTextField.getText())) {
                             JOptionPane.showMessageDialog(new JFrame(), "Username already taken!");
                             return;
                         }
@@ -880,7 +889,7 @@ public class LoginForm extends JFrame{
                 }
                 if(deleteUserRadioButton.isSelected()){
                     User<?> user = IMDB.getInstance().getUser((String)entitiesComboBox.getSelectedItem());
-                    IMDB.getInstance().getUsers().remove(user);
+                    Admin.removeUser(user);
                     JOptionPane.showMessageDialog(new JFrame(), "You have removed the user!");
                     entitiesComboBox.removeItem((String)entitiesComboBox.getSelectedItem());
                 }
@@ -979,6 +988,7 @@ public class LoginForm extends JFrame{
                             icon = new ImageIcon("src\\main\\resources\\images\\substitute.jpg");
 
                         }
+                        ratingsPanel.setVisible(false);
                         displayActor(actor, icon);
                         wasFound = true;
                     }
@@ -998,6 +1008,8 @@ public class LoginForm extends JFrame{
                             icon = new ImageIcon("src\\main\\resources\\images\\substitute.jpg");
 
                         }
+                        ratingsPanel.setVisible(true);
+
                         displayProduction(production, icon);
                         wasFound = true;
                     }
@@ -1464,10 +1476,12 @@ public class LoginForm extends JFrame{
             addToFavoritesButton.setText("Add to favorites");
     }
     private void loadRatings(Production production){
-        for(Rating rating : production.getRatings()){
-            JTextArea ratingTextArea = setTextAreaSettings(new JTextArea());
-            ratingTextArea.setText(rating.toString());
-            ratingsPanel.add(ratingTextArea);
+        if(production != null){
+            for(Rating rating : production.getRatings()){
+                JTextArea ratingTextArea = setTextAreaSettings(new JTextArea());
+                ratingTextArea.setText(rating.toString());
+                ratingsPanel.add(ratingTextArea);
+            }
         }
     }
     private JTextArea setTextAreaSettings(JTextArea textArea){

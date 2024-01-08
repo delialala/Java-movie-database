@@ -3,9 +3,6 @@ package org.example;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Rating{
     @JsonProperty("username")
     String username;
@@ -34,13 +31,9 @@ public class Rating{
         this.comment = comment;
     }
 
-
-
     public String getUsername() {
         return username;
     }
-
-
 
     @Override
     public String toString() {

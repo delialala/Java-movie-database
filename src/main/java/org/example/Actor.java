@@ -53,4 +53,20 @@ public class Actor implements Comparable{
         }
         System.out.println("========================");
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Biography: ").append(biography);
+        builder.append("\n");
+        for(Pair<String, Type> performance : performances){
+            builder.append(performance.getTitle()).append(" - ").append(performance.getType().toString());
+            builder.append("; ");
+        }
+        return builder.toString();
+    }
+
+    public String getBiography() {
+        return biography;
+    }
 }

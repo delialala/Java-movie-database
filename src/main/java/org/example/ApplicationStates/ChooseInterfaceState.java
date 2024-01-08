@@ -1,5 +1,10 @@
 package org.example.ApplicationStates;
 
+import org.example.IMDB;
+import org.example.SwingForms.LoginForm;
+
+import java.awt.*;
+
 public class ChooseInterfaceState extends ApplicationState{
     @Override
     public void next(Application app) {
@@ -11,9 +16,10 @@ public class ChooseInterfaceState extends ApplicationState{
         executeInput(app);
     }
 
+
     @Override
     public void prev(Application app) {
-        System.out.println("Cant go any lower");
+        IMDB.getInstance().doSwing();
     }
 
     void executeInput(Application app){

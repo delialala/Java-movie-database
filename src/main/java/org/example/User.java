@@ -215,6 +215,26 @@ public abstract class User<T> implements Comparable<User<T>>, Observer {
                 + "birthdate: " + information.birthDate + "\n"
                 + "country: " + information.country + "\n");
     }
+
+    @Override
+    public String toString() {
+        String temp = "Mail: " + information.credentials.getEmail() + "\n"
+                + "Experience: " + experience + "\n"
+                + "Age: " + information.age + "\n"
+                + "Birthdate: " + information.birthDate + "\n"
+                + "Country: " + information.country + "\n";
+        StringBuilder builder = new StringBuilder (temp);
+        builder.append("Favorites: ");
+        for(T t : favorites){
+            if(t instanceof Production)
+                builder.append(((Production) t).title);
+            if(t instanceof Actor)
+                builder.append(((Actor) t).name);
+            builder.append("; ");
+        }
+        return builder.toString();
+    }
+
     @Override
     public void update(String message) {
         notifications.add(message);
@@ -254,7 +274,23 @@ public abstract class User<T> implements Comparable<User<T>>, Observer {
         }
         return false;
     }
-
+    public Rating whatRatingTheyveLeft(Production production){
+        for(Rating rating : production.getRatings())
+            if(rating.getUsername().equals(username))
+                return rating;
+        return null;
+    }
+    public boolean isInFavorites(String name){
+        for(T t : favorites){
+            if(t instanceof Production)
+                if(((Production) t).title.equals(name))
+                    return true;
+            if(t instanceof Actor)
+                if(((Actor) t).name.equals(name))
+                    return true;
+        }
+        return false;
+    }
     @Override
     public int compareTo(@NotNull User user) {
         return this.username.compareTo(user.username);

@@ -48,7 +48,6 @@ public class AddDeleteRequestState extends ApplicationState{
                 number--;
 
                 Request toBeDeleted = Application.userRequests.get(number);
-                System.out.println(toBeDeleted.getUsernameResolved());
                 IMDB.getInstance().getRequests().remove(toBeDeleted);
                 app.setUserRequests();
             }
@@ -85,7 +84,8 @@ public class AddDeleteRequestState extends ApplicationState{
                 User<?> userResolve = null;
                 if (type == RequestType.ACTOR_ISSUE) {
                     System.out.println("Type the name of the actor");
-                    String name = acceptInput();userResolve = IMDB.getInstance().getWhoAdded(name);
+                    String name = acceptInput();
+                    userResolve = IMDB.getInstance().getWhoAdded(name);
                         if (userResolve != null) {
                             request.setActorName(name);
                         } else {

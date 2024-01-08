@@ -1,9 +1,18 @@
 package org.example;
-import org.example.ApplicationStates.*;
+
+import java.awt.*;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.SwingForms.LoginForm;
+
+import org.pushingpixels.radiance.theming.api.skin.*;
+
+import javax.swing.*;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+
 public class IMDB{
     private List<User<?>> users;
     private List <Actor> actors;
@@ -33,10 +42,10 @@ public class IMDB{
     }
 
     private IMDB(){
-        users = new ArrayList<>();
-        requests = new ArrayList<>();
-        productions = new ArrayList<>();
-        actors = new ArrayList<>();
+        users = new LinkedList<>();
+        requests = new LinkedList<>();
+        productions = new LinkedList<>();
+        actors = new LinkedList<>();
     }
 
     public static IMDB getInstance(){
@@ -63,6 +72,7 @@ public class IMDB{
 
         } catch (Exception ex) {
             System.out.println("Probleam reading json!");
+            ex.printStackTrace();
         }
         setRequests();
     }
@@ -137,8 +147,51 @@ public class IMDB{
         readJson();
 
     }
+    private static void setUIFont(javax.swing.plaf.FontUIResource f)
+    {
+        java.util.Enumeration<Object> keys = UIManager.getDefaults().keys();
+        while (keys.hasMoreElements())
+        {
+            Object key = keys.nextElement();
+            Object value = UIManager.get(key);
+            if (value instanceof javax.swing.plaf.FontUIResource)
+            {
+                UIManager.put(key, f);
+            }
+        }
+    }
+    public void doSwing(){
+        try{
+            /*SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    try{
+                        UIManager.setLookAndFeel(new RadianceAutumnLookAndFeel());
+                    } catch(Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            });*/
+            UIManager.setLookAndFeel(new NimbusLookAndFeel());
+            setUIFont (new javax.swing.plaf.FontUIResource(new Font("MS Mincho",Font.PLAIN, 24)));
+            LoginForm form = new LoginForm();
+            form.setContentPane(form.mainPanel);
+            form.setTitle("IMDB");
+
+            GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+
+            form.setExtendedState(Frame.MAXIMIZED_BOTH);
+            form.setMinimumSize(new Dimension(1920, 1080));
+            form.setMaximumSize(new Dimension(1920, 1080));
+            form.setVisible(true);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     public static void main(String[] args){
         IMDB.getInstance().run();
-        Application app = new Application();
+        //Application app = new Application();
+        IMDB.getInstance().doSwing();
+
     }
 }

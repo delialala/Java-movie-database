@@ -2,6 +2,8 @@ package org.example.ApplicationStates;
 
 import org.example.*;
 
+import java.awt.desktop.PreferencesEvent;
+
 public class ViewAndResolveRequests extends ApplicationState{
     public ViewAndResolveRequests(Application app) {
         printStatus();
@@ -63,7 +65,8 @@ public class ViewAndResolveRequests extends ApplicationState{
                 System.out.println("Request marked as resolved!");
             }
             if(status.equals("REJECTED")){
-                IMDB.getInstance().getRequests().remove(index);
+                ((Staff<?>) Application.user).getRequestList().remove(request);
+                IMDB.getInstance().getRequests().remove(request);
                 System.out.println("Request rejected!");
             }
             if(!status.equals("ACCEPTED") && !status.equals("REJECTED"))
@@ -102,6 +105,7 @@ public class ViewAndResolveRequests extends ApplicationState{
             }
 
             Request request = Admin.RequestsHolder.adminRequests.get(index);
+            IMDB.getInstance().getRequests().remove(request);
             Admin.RequestsHolder.adminRequests.remove(request);
             System.out.println("Request removed successfully!");
 

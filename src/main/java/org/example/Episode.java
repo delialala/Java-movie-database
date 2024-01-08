@@ -19,4 +19,12 @@ public class Episode {
         return "Name: " + episodeName + "\n"
                 + "Duration: " + duration;
     }
+
+    public String getEpisodeName() {
+        return episodeName;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
 }

@@ -26,6 +26,7 @@ public abstract class Production implements Comparable, Subject{
     List<Genre> genres = new ArrayList<>();
     @JsonProperty("ratings")
     List<Rating> ratings = new ArrayList<>();
+
     @JsonProperty("plot")
     String plot;
     @JsonProperty("averageRating")
@@ -40,6 +41,22 @@ public abstract class Production implements Comparable, Subject{
                 return true;
         }
         return false;
+    }
+
+    public List<String> getDirectors() {
+        return directors;
+    }
+
+    public List<String> getActors() {
+        return actors;
+    }
+
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    public String getPlot() {
+        return plot;
     }
 
     public List<Rating> getRatings() {
@@ -111,8 +128,34 @@ public abstract class Production implements Comparable, Subject{
             System.out.print(rating);
         }
         System.out.println("====================================");
-
     }
+
+    @Override
+    public String toString() {
+        StringBuilder build = new StringBuilder();
+        build.append("Plot: ").append(plot).append("\n").append("Average rating: ").append(averageRating).append("\n");
+        build.append("\n");
+        build.append("Genres: ");
+        for(Genre genre : genres){
+            build.append(genre);
+            build.append(" ");
+        }
+        build.append("\n");
+        build.append("Directors: ");
+        for(String director : directors){
+            build.append(director);
+            build.append(" ");
+        }
+        build.append("\n");
+        build.append("Actors: ");
+        for(String actor : actors){
+            build.append(actor);
+            build.append(" ");
+        }
+        build.append("\n");
+        return build.toString();
+    }
+
     @Override
     public int compareTo(@NotNull Object o) {
         if (o instanceof Production) {

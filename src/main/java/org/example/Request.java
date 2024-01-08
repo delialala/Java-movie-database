@@ -24,6 +24,15 @@ public class Request implements Subject {
     String usernameResolved;
     List<Observer> users = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "Request type: " + type + "\n"
+                + "Date created: " + date + "\n"
+                + "Title: " + title + "\n"
+                + "Description: " + description + "\n"
+                + "Username of the person the request is dedicated to: " + usernameResolved;
+    }
+
     public void setType(RequestType type) {
         this.type = type;
     }
